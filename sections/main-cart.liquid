@@ -1,167 +1,32 @@
-{% comment %}
-  The original CSS has been converted to Tailwind CSS classes.
-  The schema and HTML structure remain unchanged.
-  Note: CSS variables like `--padding-5xl` are used directly within Tailwind's arbitrary value syntax `[...]`.
-  The `:has` selector from the original CSS (`.section--page-width .cart-page:has(.cart__container--extend)`)
-  is a complex selector that does not have a direct, simple Tailwind utility class equivalent for the parent element
-  without altering the HTML structure or using JavaScript. Therefore, this specific rule has been omitted
-  to preserve the original HTML structure as requested.
-{% endcomment %}
-
-{% stylesheet %}
-  @media screen and (width >= 750px) {
-  .cart-page {
-    grid-template-columns: 1fr min(50vw, var(--sidebar-width)); /* This creates two columns */
-    grid-template-rows: min-content min-content 1fr;
-  }
-  .cart-page__summary {
-    grid-column: 2; /* Summary goes into the second column */
-    grid-row: 1 / -1;
-  }
-}
-{% endstylesheet %}
-
 <cart-items-component
   class="w-full"
   data-section-id="{{ section.id }}"
 >
   <div class="section-background color-{{ section.settings.color_scheme }}"></div>
-  <div
-    class="section color-{{ section.settings.color_scheme }} section--{{ section.settings.section_width }}"
-  >
+
+  <div class="section color-{{ section.settings.color_scheme }} section--{{ section.settings.section_width }}">
     <div
-      class="
-        grid grid-cols-1
-        gap-x-[var(--padding-5xl)]
-        {% if cart.empty? %}
-          flex flex-col items-center justify-center
-        {% endif %}
-        spacing-style
-        md:grid-cols-[1fr_min(50vw,var(--sidebar-width))]
-        md:grid-rows-[min-content_min-content_1fr]
-        xl:grid-cols-[1fr_var(--sidebar-width)]
-      "
+      class="spacing-style grid grid-cols-1 [gap:0_var(--padding-5xl)]{% if cart.empty? %} flex flex-col items-center justify-center{% endif %} md:[grid-template-columns:1fr_min(50vw,var(--sidebar-width))] md:[grid-template-rows:min-content_min-content_1fr] 2xl:[grid-template-columns:1fr_var(--sidebar-width)]"
       style="{% render 'spacing-style', settings: section.settings %}"
     >
-      <div class="cart-page__title
-        {% if cart.empty? %}
-          mt-[var(--margin-6xl)] text-center
-        {% endif %}
-        md:col-start-1 md:col-end-2
-      ">
+      <div class="cart-page__title {% if cart.empty? %}mt-[var(--margin-6xl)] text-center{% endif %}">
         {%- content_for 'block', id: 'cart-page-title', type: '_cart-title' %}
       </div>
 
-      <div class="cart-page__items
-        md:col-start-1 md:col-end-2
-      ">
+      <div class="cart-page__items">
         {%- content_for 'block', id: 'cart-page-items', type: '_cart-products' %}
       </div>
 
       {%- unless cart.empty? -%}
-        <div class="cart-page__summary
-          pt-[var(--padding-xl)]
-          md:grid md:h-full md:col-start-2 md:row-start-1 md:row-end-[-1] md:self-stretch md:grid-rows-subgrid md:pt-0 md:relative
-        ">
+        <div class="cart-page__summary pt-[var(--padding-xl)] md:grid h-full col-start-2 row-span-full self-stretch md:[grid-template-rows:subgrid] md:pt-0 relative">
           {%- content_for 'block', id: 'cart-page-summary', type: '_cart-summary' -%}
         </div>
       {%- endunless -%}
 
-      <div class="cart-page__more-blocks
-        w-full
-        {% if cart.empty? %}
-          mt-[var(--margin-6xl)]
-        {% endif %}
-        md:col-start-1 md:col-end-2
-      ">
+      <div class="cart-page__more-blocks w-full {% if cart.empty? %}mt-[var(--margin-6xl)]{% endif %}">
         {%- content_for 'blocks' -%}
       </div>
     </div>
   </div>
 </cart-items-component>
 
-{% schema %}
-{
-  "name": "t:names.cart",
-  "disabled_on": {
-    "groups": ["header", "footer"]
-  },
-  "blocks": [
-    {
-      "type": "@theme"
-    },
-    {
-      "type": "@app"
-    },
-    {
-      "type": "text"
-    },
-    {
-      "type": "icon"
-    },
-    {
-      "type": "image"
-    },
-    {
-      "type": "button"
-    },
-    {
-      "type": "video"
-    },
-    {
-      "type": "group"
-    },
-    {
-      "type": "spacer"
-    }
-  ],
-  "settings": [
-    {
-      "type": "select",
-      "id": "section_width",
-      "label": "t:settings.width",
-      "options": [
-        {
-          "value": "page-width",
-          "label": "t:options.page"
-        },
-        {
-          "value": "full-width",
-          "label": "t:options.full"
-        }
-      ],
-      "default": "page-width"
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "t:settings.color_scheme",
-      "default": "scheme-1"
-    },
-    {
-      "type": "header",
-      "content": "t:content.padding"
-    },
-    {
-      "type": "range",
-      "id": "padding-block-start",
-      "label": "t:settings.top",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "padding-block-end",
-      "label": "t:settings.bottom",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "default": 0
-    }
-  ]
-}
-{% endschema %}

@@ -207,6 +207,9 @@
   .z-50 {
     z-index: 50;
   }
+  .col-start-2 {
+    grid-column-start: 2;
+  }
   .row-1 {
     grid-row: 1;
   }
@@ -215,6 +218,9 @@
   }
   .row-3 {
     grid-row: 3;
+  }
+  .row-span-full {
+    grid-row: 1 / -1;
   }
   .container {
     width: 100%;
@@ -266,6 +272,9 @@
   }
   .table {
     display: table;
+  }
+  .h-full {
+    height: 100%;
   }
   .w-\[680px\] {
     width: 680px;
@@ -333,8 +342,14 @@
   .justify-center {
     justify-content: center;
   }
+  .\[gap\:0_var\(--padding-5xl\)\] {
+    gap: 0 var(--padding-5xl);
+  }
   .gap-x-\[var\(--padding-5xl\)\] {
     column-gap: var(--padding-5xl);
+  }
+  .self-stretch {
+    align-self: stretch;
   }
   .truncate {
     overflow: hidden;
@@ -532,9 +547,24 @@
       height: 100%;
     }
   }
+  .md\:\[grid-template-columns\:1fr_min\(50vw\,var\(--sidebar-width\)\)\] {
+    @media (width >= 48rem) {
+      grid-template-columns: 1fr min(50vw, var(--sidebar-width));
+    }
+  }
   .md\:grid-cols-\[1fr_min\(50vw\,var\(--sidebar-width\)\)\] {
     @media (width >= 48rem) {
       grid-template-columns: 1fr min(50vw, var(--sidebar-width));
+    }
+  }
+  .md\:\[grid-template-rows\:min-content_min-content_1fr\] {
+    @media (width >= 48rem) {
+      grid-template-rows: min-content min-content 1fr;
+    }
+  }
+  .md\:\[grid-template-rows\:subgrid\] {
+    @media (width >= 48rem) {
+      grid-template-rows: subgrid;
     }
   }
   .md\:grid-rows-\[min-content_min-content_1fr\] {
@@ -565,6 +595,11 @@
   }
   .xl\:grid-cols-\[1fr_var\(--sidebar-width\)\] {
     @media (width >= 80rem) {
+      grid-template-columns: 1fr var(--sidebar-width);
+    }
+  }
+  .\32 xl\:\[grid-template-columns\:1fr_var\(--sidebar-width\)\] {
+    @media (width >= 96rem) {
       grid-template-columns: 1fr var(--sidebar-width);
     }
   }
