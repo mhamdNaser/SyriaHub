@@ -1,90 +1,15 @@
-
-
-{% stylesheet %}
-  .cart-page {
-    --cart-font-size--2xs: var(--font-size--2xs);
-    --cart-font-size--xs: var(--font-size--xs);
-    --cart-font-size--sm: var(--font-size--sm);
-    --cart-font-size--md: var(--font-size--md);
-    --cart-font-size--2xl: var(--font-size--2xl);
-
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0 var(--padding-5xl);
-  }
-
-  .cart-page--empty {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .cart-page--empty .cart-page__title,
-  .cart-page--empty .cart-page__more-blocks {
-    margin-top: var(--margin-6xl);
-  }
-
-  .cart-page__more-blocks {
-    width: 100%;
-  }
-
-  .cart-page--empty .cart-title {
-    text-align: center;
-  }
-
-  .cart-page__main {
-    grid-column: 1;
-  }
-
-  .cart-page__summary {
-    padding-top: var(--padding-xl);
-  }
-
-  @media screen and (width >= 750px) {
-    .cart-page {
-      grid-template-columns: 1fr min(50vw, var(--sidebar-width));
-      grid-template-rows: min-content min-content 1fr;
-    }
-
-    .cart-page__summary {
-      display: grid;
-      height: 100%;
-      grid-column: 2;
-      grid-row: 1 / -1;
-      align-self: stretch;
-      grid-template-rows: subgrid;
-      padding-top: 0;
-      /* needed to support blurred effect from hero section */
-      position: relative;
-    }
-
-    .section--page-width .cart-page:has(.cart__container--extend) {
-      grid-column: 2 / 4;
-      grid-template-columns: 1fr minmax(
-          var(--sidebar-width),
-          calc((100vw - var(--page-width)) / 2 + var(--sidebar-width))
-        );
-    }
-
-    .cart__container--extend {
-      height: 100%;
-    }
-  }
-
-  @media screen and (width >= 1400px) {
-    .cart-page {
-      grid-template-columns: 1fr var(--sidebar-width);
-    }
-  }
-
-  .cart-items-component {
-    width: 100%;
-  }
-{% endstylesheet %}
+{% comment %}
+  The original CSS has been converted to Tailwind CSS classes.
+  The schema and HTML structure remain unchanged.
+  Note: CSS variables like `--padding-5xl` are used directly within Tailwind's arbitrary value syntax `[...]`.
+  The `:has` selector from the original CSS (`.section--page-width .cart-page:has(.cart__container--extend)`)
+  is a complex selector that does not have a direct, simple Tailwind utility class equivalent for the parent element
+  without altering the HTML structure or using JavaScript. Therefore, this specific rule has been omitted
+  to preserve the original HTML structure as requested.
+{% endcomment %}
 
 <cart-items-component
-  class="cart-items-component"
+  class="w-full"
   data-section-id="{{ section.id }}"
 >
   <div class="section-background color-{{ section.settings.color_scheme }}"></div>
@@ -92,10 +17,24 @@
     class="section color-{{ section.settings.color_scheme }} section--{{ section.settings.section_width }}"
   >
     <div
-      class="cart-page spacing-style{% if cart.empty? %} cart-page--empty{% endif %}"
+      class="
+        grid grid-cols-1
+        gap-x-[var(--padding-5xl)]
+        {% if cart.empty? %}
+          flex flex-col items-center justify-center
+        {% endif %}
+        spacing-style
+        md:grid-cols-[1fr_min(50vw,var(--sidebar-width))]
+        md:grid-rows-[min-content_min-content_1fr]
+        xl:grid-cols-[1fr_var(--sidebar-width)]
+      "
       style="{% render 'spacing-style', settings: section.settings %}"
     >
-      <div class="cart-page__title">
+      <div class="cart-page__title
+        {% if cart.empty? %}
+          mt-[var(--margin-6xl)] text-center
+        {% endif %}
+      ">
         {%- content_for 'block', id: 'cart-page-title', type: '_cart-title' %}
       </div>
 
@@ -104,12 +43,20 @@
       </div>
 
       {%- unless cart.empty? -%}
-        <div class="cart-page__summary">
+        <div class="cart-page__summary
+          pt-[var(--padding-xl)]
+          md:grid md:h-full md:col-start-2 md:row-start-1 md:row-end-[-1] md:self-stretch md:grid-rows-subgrid md:pt-0 md:relative
+        ">
           {%- content_for 'block', id: 'cart-page-summary', type: '_cart-summary' -%}
         </div>
       {%- endunless -%}
 
-      <div class="cart-page__more-blocks">
+      <div class="cart-page__more-blocks
+        w-full
+        {% if cart.empty? %}
+          mt-[var(--margin-6xl)]
+        {% endif %}
+      ">
         {%- content_for 'blocks' -%}
       </div>
     </div>
