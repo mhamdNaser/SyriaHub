@@ -210,6 +210,21 @@
   .col-start-2 {
     grid-column-start: 2;
   }
+  .col-start-3 {
+    grid-column-start: 3;
+  }
+  .col-start-9 {
+    grid-column-start: 9;
+  }
+  .col-start-10 {
+    grid-column-start: 10;
+  }
+  .col-end-3 {
+    grid-column-end: 3;
+  }
+  .col-end-13 {
+    grid-column-end: 13;
+  }
   .row-1 {
     grid-row: 1;
   }
@@ -508,6 +523,11 @@
   }
   .\[grid-area\:stack\]\/\[grid-area\:stack\] {
     grid-area: color-mix(in oklab, stack grid-area:stack, transparent);
+  }
+  .sm\:grid-cols-1 {
+    @media (width >= 40rem) {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
   }
   .md\:relative {
     @media (width >= 48rem) {
