@@ -29,7 +29,7 @@
       {% render 'slideshow-arrows', icon_style: 'chevron' %}
     {% endif %}
 
-    <div class="announcement-bar__slides grid [grid-area:stack]/[grid-area:stack] w-fit max-w-[680px] mx-auto">
+    <div class="announcement-bar__slides grid [grid-area:stack]/[grid-area:stack] w-[calc(100%-theme(spacing.10)*2)] max-w-[680px] mx-auto">
       {% content_for 'blocks' %}
     </div>
   </announcement-bar-component>
@@ -44,6 +44,7 @@
       "type": "_announcement"
     }
   ],
+  "max_blocks": 1,
   "enabled_on": {
     "groups": ["header"]
   },
