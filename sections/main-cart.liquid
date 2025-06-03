@@ -6,7 +6,7 @@
 
   <div class="section color-{{ section.settings.color_scheme }} section--{{ section.settings.section_width }}">
     <div
-      class="spacing-style grid grid-cols-1 [gap:0_var(--padding-5xl)]{% if cart.empty? %} flex flex-col items-center justify-center{% endif %} md:[grid-template-columns:1fr_min(50vw,var(--sidebar-width))] md:[grid-template-rows:min-content_min-content_1fr] 2xl:[grid-template-columns:1fr_var(--sidebar-width)]"
+      class="spacing-style {% if cart.empty? %} flex flex-col items-center justify-center{% endif %} md:[grid-template-columns:1fr_min(50vw,var(--sidebar-width))] md:[grid-template-rows:min-content_min-content_1fr] 2xl:[grid-template-columns:1fr_var(--sidebar-width)]"
       style="{% render 'spacing-style', settings: section.settings %}"
     >
       <div class="cart-page__title {% if cart.empty? %}mt-[var(--margin-6xl)] text-center{% endif %}">
