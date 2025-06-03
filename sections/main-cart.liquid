@@ -9,9 +9,9 @@
         {% if cart.empty? %}
           flex flex-col items-center justify-center text-center
         {% else %}
-          grid grid-cols-4 gap-y-10 md:grid-cols-12 md:gap-x-6
+          flex flex-col gap-y-10 md:grid-cols-12 md:gap-x-6
         {% endif %}
-        {% comment %} {% render 'spacing-style', settings: section.settings %} {% endcomment %}
+        {% render 'spacing-style', settings: section.settings %}
       "
     >
       <!-- العنوان -->
