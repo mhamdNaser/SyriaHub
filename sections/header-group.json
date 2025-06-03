@@ -37,8 +37,8 @@
         "section_width": "full-width",
         "color_scheme": "scheme-4",
         "divider_width": 5,
-        "padding-block-start": 31,
-        "padding-block-end": 33
+        "padding-block-start": 19,
+        "padding-block-end": 49
       }
     },
     "header_section": {
