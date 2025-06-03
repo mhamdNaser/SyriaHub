@@ -85,9 +85,40 @@
         "enable_transparent_header_collection": true,
         "collection_color_scheme": "inverse"
       }
+    },
+    "header_announcements_VWFDyx": {
+      "type": "header-announcements",
+      "blocks": {
+        "announcement_nWhxYh": {
+          "type": "_announcement",
+          "settings": {
+            "text": "Shop our latest arrivals!",
+            "link": "",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "weight": "",
+            "letter_spacing": "normal",
+            "case": "none"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "announcement_nWhxYh"
+      ],
+      "name": "t:names.announcement_bar",
+      "settings": {
+        "speed": 5,
+        "section_width": "page-width",
+        "color_scheme": "",
+        "divider_width": 0,
+        "padding-block-start": 15,
+        "padding-block-end": 15
+      }
     }
   },
   "order": [
+    "header_announcements_VWFDyx",
     "header_section"
   ]
 }
