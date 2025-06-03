@@ -552,6 +552,11 @@
       grid-template-columns: 1fr min(50vw, var(--sidebar-width));
     }
   }
+  .md\:grid-cols-4 {
+    @media (width >= 48rem) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
   .md\:grid-cols-\[1fr_min\(50vw\,var\(--sidebar-width\)\)\] {
     @media (width >= 48rem) {
       grid-template-columns: 1fr min(50vw, var(--sidebar-width));

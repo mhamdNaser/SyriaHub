@@ -18,7 +18,7 @@
       </div>
 
       {%- unless cart.empty? -%}
-        <div class="cart-page__summary pt-[var(--padding-xl)] md:grid h-full col-start-2 row-span-full self-stretch md:[grid-template-rows:subgrid] md:pt-0 relative">
+        <div class="cart-page__summary pt-[var(--padding-xl)] md:grid h-full col-start-2 row-span-full self-stretch md:grid-cols-4 md:pt-0 relative">
           {%- content_for 'block', id: 'cart-page-summary', type: '_cart-summary' -%}
         </div>
       {%- endunless -%}
