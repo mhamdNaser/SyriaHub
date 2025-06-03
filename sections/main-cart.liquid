@@ -18,7 +18,6 @@
   >
     <div
       class="
-        grid grid-cols-1
         gap-x-[var(--padding-5xl)]
         {% if cart.empty? %}
           flex flex-col items-center justify-center
@@ -26,7 +25,6 @@
         spacing-style
         md:grid-cols-[1fr_min(50vw,var(--sidebar-width))]
         md:grid-rows-[min-content_min-content_1fr]
-        xl:grid-cols-[1fr_var(--sidebar-width)]
       "
       style="{% render 'spacing-style', settings: section.settings %}"
     >
