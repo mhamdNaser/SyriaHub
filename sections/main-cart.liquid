@@ -8,6 +8,19 @@
   to preserve the original HTML structure as requested.
 {% endcomment %}
 
+{% stylesheet %}
+  @media screen and (width >= 750px) {
+  .cart-page {
+    grid-template-columns: 1fr min(50vw, var(--sidebar-width)); /* This creates two columns */
+    grid-template-rows: min-content min-content 1fr;
+  }
+  .cart-page__summary {
+    grid-column: 2; /* Summary goes into the second column */
+    grid-row: 1 / -1;
+  }
+}
+{% endstylesheet %}
+
 <cart-items-component
   class="w-full"
   data-section-id="{{ section.id }}"
