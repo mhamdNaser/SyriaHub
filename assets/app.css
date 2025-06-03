@@ -264,11 +264,17 @@
   .table {
     display: table;
   }
+  .w-\[680px\] {
+    width: 680px;
+  }
   .w-\[calc\(100\%-theme\(spacing\.10\)\*2\)\] {
     width: calc(100% - 2.5rem * 2);
   }
   .w-\[var\(--width\)\] {
     width: var(--width);
+  }
+  .w-fit {
+    width: fit-content;
   }
   .w-full {
     width: 100%;
