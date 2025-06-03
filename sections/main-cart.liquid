@@ -15,7 +15,7 @@
       "
     >
       <!-- العنوان -->
-      <div class="cart-page__title col-span-2 col-end-3">
+      <div class="cart-page__title col-start-1 col-end-3">
         {%- content_for 'block', id: 'cart-page-title', type: '_cart-title' %}
       </div>
 
@@ -26,7 +26,7 @@
 
       <!-- الملخص -->
       {%- unless cart.empty? -%}
-        <div class="cart-page__summary col-span-2 col-end-13 relative self-stretch">
+        <div class="cart-page__summary col-start-11 col-end-13 relative self-stretch">
           {%- content_for 'block', id: 'cart-page-summary', type: '_cart-summary' -%}
         </div>
       {%- endunless -%}

@@ -213,6 +213,9 @@
   .col-span-8 {
     grid-column: span 8 / span 8;
   }
+  .col-start-1 {
+    grid-column-start: 1;
+  }
   .col-start-2 {
     grid-column-start: 2;
   }
@@ -224,6 +227,9 @@
   }
   .col-start-10 {
     grid-column-start: 10;
+  }
+  .col-start-11 {
+    grid-column-start: 11;
   }
   .col-end-3 {
     grid-column-end: 3;
