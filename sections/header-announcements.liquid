@@ -4,7 +4,7 @@
     type="module"
   ></script>
 {% endif %}
-<div class="section-background py-6 color-{{ section.settings.color_scheme }}"></div>
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
 
 <aside
   class="announcement-bar border-b section section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }} {% render 'spacing-padding', settings: section.settings %}"
@@ -20,7 +20,7 @@
   %}
 
   <announcement-bar-component
-    class="announcement-bar__slider flex flex-row items-center relative"
+    class="announcement-bar__slider flex flex-row items-center text-center relative"
     {% if autoplay == true %}
       autoplay="{{ section.settings.speed }}" aria-live="polite"
     {% endif %}
