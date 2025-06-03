@@ -647,6 +647,11 @@
       grid-column: span 8 / span 8;
     }
   }
+  .xl\:grid {
+    @media (width >= 80rem) {
+      display: grid;
+    }
+  }
   .xl\:grid-cols-12 {
     @media (width >= 80rem) {
       grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -655,6 +660,11 @@
   .xl\:grid-cols-\[1fr_var\(--sidebar-width\)\] {
     @media (width >= 80rem) {
       grid-template-columns: 1fr var(--sidebar-width);
+    }
+  }
+  .xl\:gap-x-6 {
+    @media (width >= 80rem) {
+      column-gap: calc(var(--spacing) * 6);
     }
   }
   .\32 xl\:\[grid-template-columns\:1fr_var\(--sidebar-width\)\] {

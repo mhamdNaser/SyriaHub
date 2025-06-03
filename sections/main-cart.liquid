@@ -9,7 +9,7 @@
         {% if cart.empty? %}
           flex flex-col items-center justify-center text-center
         {% else %}
-          grid grid-cols-1 gap-y-10 md:grid-cols-12 md:gap-x-6
+          grid grid-cols-1 gap-y-10 xl:grid-cols-12 xl:gap-x-6 md:grid-cols-12 md:gap-x-6
         {% endif %}
         {% render 'spacing-style', settings: section.settings %}
       "
