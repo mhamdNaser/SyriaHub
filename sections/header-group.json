@@ -33,10 +33,10 @@
       ],
       "name": "t:names.announcement_bar",
       "settings": {
-        "speed": 6,
+        "speed": 10,
         "section_width": "full-width",
         "color_scheme": "scheme-2",
-        "divider_width": 1.5,
+        "divider_width": 5,
         "padding-block-start": 31,
         "padding-block-end": 33
       }
