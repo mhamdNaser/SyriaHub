@@ -3,13 +3,13 @@
   data-section-id="{{ section.id }}"
 >
   <div class="section-background color-{{ section.settings.color_scheme }}"></div>
-  <div class="section color-{{ section.settings.color_scheme }} section--{{ section.settings.section_width }}">
+  <div class="section color-{{ section.settings.color_scheme }} section--{{ section.settings.section_width }} w-full">
     <div
       class="
         {% if cart.empty? %}
           flex flex-col items-center justify-center text-center
         {% else %}
-          grid grid-flow-row-dense grid-cols-3 grid-rows-3 gap-y-10
+          grid grid-flow-row-dense grid-cols-3 grid-rows-3 gap-y-10 w-full
         {% endif %}
         {% render 'spacing-style', settings: section.settings %}
       "
