@@ -3,46 +3,47 @@
   data-section-id="{{ section.id }}"
 >
   <div class="section-background color-{{ section.settings.color_scheme }}"></div>
-  <div
-    class="section color-{{ section.settings.color_scheme }} section--{{ section.settings.section_width }}"
-  >
+  <div class="section color-{{ section.settings.color_scheme }} section--{{ section.settings.section_width }}">
     <div
       class="
-        grid gap-x-20
+        grid grid-cols-1 gap-y-10
+        md:grid-cols-12 md:gap-x-6
         {% if cart.empty? %}
           flex flex-col items-center justify-center text-center
-        {% else %}
-          md:grid-cols-[1fr_min(50vw,var(--sidebar-width))] md:grid-rows-[min-content_min-content_1fr]
-          xl:grid-cols-[1fr_var(--sidebar-width)]
         {% endif %}
         {% render 'spacing-style', settings: section.settings %}
       "
     >
-      <div class="mt-24 cart-page__title">
+      <!-- عنوان الصفحة -->
+      <div class="cart-page__title md:col-span-2">
         {%- content_for 'block', id: 'cart-page-title', type: '_cart-title' %}
       </div>
 
-      <div class="cart-page__items w-full">
+      <!-- العناصر الرئيسية -->
+      <div class="cart-page__items w-full md:col-span-8">
         {%- content_for 'block', id: 'cart-page-items', type: '_cart-products' %}
       </div>
 
+      <!-- الملخص -->
       {%- unless cart.empty? -%}
         <div
           class="
-            md:grid md:h-full md:col-start-2 md:row-span-full md:self-stretch
-            md:grid-rows-subgrid md:relative
+            cart-page__summary
+            md:col-span-2 md:self-stretch md:relative
           "
         >
           {%- content_for 'block', id: 'cart-page-summary', type: '_cart-summary' -%}
         </div>
       {%- endunless -%}
 
-      <div class="w-full mt-24">
+      <!-- محتوى إضافي -->
+      <div class="cart-page__more-blocks w-full md:col-span-12 mt-24">
         {%- content_for 'blocks' -%}
       </div>
     </div>
   </div>
 </cart-items-component>
+
 
 
 {% schema %}

@@ -354,6 +354,9 @@
   .gap-x-\[var\(--padding-5xl\)\] {
     column-gap: var(--padding-5xl);
   }
+  .gap-y-10 {
+    row-gap: calc(var(--spacing) * 10);
+  }
   .self-stretch {
     align-self: stretch;
   }
@@ -508,6 +511,21 @@
       position: relative;
     }
   }
+  .md\:col-span-2 {
+    @media (width >= 48rem) {
+      grid-column: span 2 / span 2;
+    }
+  }
+  .md\:col-span-8 {
+    @media (width >= 48rem) {
+      grid-column: span 8 / span 8;
+    }
+  }
+  .md\:col-span-12 {
+    @media (width >= 48rem) {
+      grid-column: span 12 / span 12;
+    }
+  }
   .md\:col-start-1 {
     @media (width >= 48rem) {
       grid-column-start: 1;
@@ -568,6 +586,11 @@
       grid-template-columns: repeat(4, minmax(0, 1fr));
     }
   }
+  .md\:grid-cols-12 {
+    @media (width >= 48rem) {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+  }
   .md\:grid-cols-\[1fr_min\(50vw\,var\(--sidebar-width\)\)\] {
     @media (width >= 48rem) {
       grid-template-columns: 1fr min(50vw, var(--sidebar-width));
@@ -591,6 +614,11 @@
   .md\:grid-rows-subgrid {
     @media (width >= 48rem) {
       grid-template-rows: subgrid;
+    }
+  }
+  .md\:gap-x-6 {
+    @media (width >= 48rem) {
+      column-gap: calc(var(--spacing) * 6);
     }
   }
   .md\:self-stretch {
