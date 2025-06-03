@@ -6,18 +6,18 @@
 
   # تحديد كلاسات Tailwind للمحاذاة بناءً على الإعدادات
   assign alignment_class = ''
-  if block.settings.align == 'center' # افتراض أن لديك إعداد محاذاة في السكيما
+  if block.settings.align == 'center' 
     assign alignment_class = 'mx-auto text-center'
   elsif block.settings.align == 'right'
-    assign alignment_class = 'ms-auto text-right' # أو ml-auto
+    assign alignment_class = 'ms-auto text-right'
   else
-    assign alignment_class = 'text-left' # الافتراضي
+    assign alignment_class = 'text-left'
   endif
 
   # تحديد كلاسات Tailwind للخط بناءً على الإعدادات
   assign font_class = ''
   if block.settings.font == 'var(--font-body--family)'
-    assign font_class = 'font-body' # أو استخدم كلاس مخصص إذا لم يكن هذا في Tailwind config
+    assign font_class = 'font-body'
   elsif block.settings.font == 'var(--font-subheading--family)'
     assign font_class = 'font-subheading'
   elsif block.settings.font == 'var(--font-heading--family)'
@@ -44,7 +44,7 @@
   elsif block.settings.letter_spacing == 'normal'
     assign letter_spacing_class = 'tracking-normal'
   elsif block.settings.letter_spacing == 'loose'
-    assign letter_spacing_class = 'tracking-wide' # Tailwind يستخدم wide لـ loose
+    assign letter_spacing_class = 'tracking-wide' 
   endif
 
   assign text_case_class = ''
@@ -93,7 +93,7 @@
         class="announcement-bar__link decoration-transparent" {# أضفنا decoration-transparent هنا #}
         href="{{ block.settings.link }}"
       >
-        <span class="sr-only"> {# visually-hidden -> sr-only #}
+        <span class="sr-only">
           {{ block.settings.text | strip_html }}
         </span>
       </a>
