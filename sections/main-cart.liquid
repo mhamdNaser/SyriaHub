@@ -9,7 +9,7 @@
         {% if cart.empty? %}
           flex flex-col items-center justify-center text-center
         {% else %}
-          flex flex-col gap-y-10 md:grid-cols-12 md:gap-x-6
+          flex flex-row gap-y-10 md:grid-cols-12 md:gap-x-6
         {% endif %}
         {% render 'spacing-style', settings: section.settings %}
       "
