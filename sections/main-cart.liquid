@@ -9,24 +9,24 @@
         {% if cart.empty? %}
           flex flex-col items-center justify-center text-center
         {% else %}
-          grid grid-cols-12 gap-y-10 md:grid-cols-12 sm:grid-cols-1 md:gap-x-6
+          grid grid-cols-12 gap-y-10
         {% endif %}
         {% render 'spacing-style', settings: section.settings %}
       "
     >
       <!-- العنوان -->
-      <div class="cart-page__title md:col-span-2 col-end-3">
+      <div class="cart-page__title col-span-2 col-end-3">
         {%- content_for 'block', id: 'cart-page-title', type: '_cart-title' %}
       </div>
 
       <!-- العناصر -->
-      <div class="cart-page__items w-full md:col-span-8 col-start-3">
+      <div class="cart-page__items w-full col-span-8 col-start-3">
         {%- content_for 'block', id: 'cart-page-items', type: '_cart-products' %}
       </div>
 
       <!-- الملخص -->
       {%- unless cart.empty? -%}
-        <div class="cart-page__summary md:col-span-2 col-end-13 relative self-stretch">
+        <div class="cart-page__summary col-span-2 col-end-13 relative self-stretch">
           {%- content_for 'block', id: 'cart-page-summary', type: '_cart-summary' -%}
         </div>
       {%- endunless -%}

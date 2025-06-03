@@ -207,6 +207,12 @@
   .z-50 {
     z-index: 50;
   }
+  .col-span-2 {
+    grid-column: span 2 / span 2;
+  }
+  .col-span-8 {
+    grid-column: span 8 / span 8;
+  }
   .col-start-2 {
     grid-column-start: 2;
   }
