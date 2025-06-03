@@ -211,6 +211,9 @@
       max-width: 96rem;
     }
   }
+  .mx-auto {
+    margin-inline: auto;
+  }
   .block {
     display: block;
   }
@@ -232,6 +235,12 @@
   .table {
     display: table;
   }
+  .w-\[calc\(100\%-theme\(spacing\.10\)\*2\)\] {
+    width: calc(100% - 2.5rem * 2);
+  }
+  .max-w-\[680px\] {
+    max-width: 680px;
+  }
   .flex-shrink {
     flex-shrink: 1;
   }
@@ -247,8 +256,14 @@
   .resize {
     resize: both;
   }
+  .flex-row {
+    flex-direction: row;
+  }
   .flex-wrap {
     flex-wrap: wrap;
+  }
+  .items-center {
+    align-items: center;
   }
   .truncate {
     overflow: hidden;
@@ -261,6 +276,10 @@
   .border {
     border-style: var(--tw-border-style);
     border-width: 1px;
+  }
+  .border-b {
+    border-bottom-style: var(--tw-border-style);
+    border-bottom-width: 1px;
   }
   .text-left {
     text-align: left;
@@ -316,6 +335,9 @@
   .ease-in-out {
     --tw-ease: var(--ease-in-out);
     transition-timing-function: var(--ease-in-out);
+  }
+  .\[grid-area\:stack\]\/\[grid-area\:stack\] {
+    grid-area: color-mix(in oklab, stack grid-area:stack, transparent);
   }
 }
 @property --tw-rotate-x {
