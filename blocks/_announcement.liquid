@@ -1,122 +1,99 @@
 
 
-{% stylesheet %}
-  .text-block {
-    width: var(--width);
-    max-width: 100%;
-  }
+{% liquid
+  assign plain_text = block.settings.text | strip_newlines | strip_html | strip
+  assign block_index = section.blocks | find_index: 'id', block.id
 
-  .text-block > * {
-    width: var(--width);
-    max-width: var(--max-width, 100%);
-    text-align: var(--text-align);
-  }
+  # تحديد كلاسات Tailwind للمحاذاة بناءً على الإعدادات
+  assign alignment_class = ''
+  if block.settings.align == 'center' # افتراض أن لديك إعداد محاذاة في السكيما
+    assign alignment_class = 'mx-auto text-center'
+  elsif block.settings.align == 'right'
+    assign alignment_class = 'ms-auto text-right' # أو ml-auto
+  else
+    assign alignment_class = 'text-left' # الافتراضي
+  endif
 
-  .text-block:not(.text-block--full-width).rte,
-  .text-block:not(.text-block--full-width).paragraph {
-    /* Safari doesn't support pretty, so fallback to balance */
-    text-wrap: balance;
-    text-wrap: pretty;
-  }
+  # تحديد كلاسات Tailwind للخط بناءً على الإعدادات
+  assign font_class = ''
+  if block.settings.font == 'var(--font-body--family)'
+    assign font_class = 'font-body' # أو استخدم كلاس مخصص إذا لم يكن هذا في Tailwind config
+  elsif block.settings.font == 'var(--font-subheading--family)'
+    assign font_class = 'font-subheading'
+  elsif block.settings.font == 'var(--font-heading--family)'
+    assign font_class = 'font-heading'
+  elsif block.settings.font == 'var(--font-accent--family)'
+    assign font_class = 'font-accent'
+  endif
 
-  .text-block:not(.text-block--full-width).h1,
-  .text-block:not(.text-block--full-width).h2,
-  .text-block:not(.text-block--full-width).h3,
-  .text-block:not(.text-block--full-width).h4,
-  .text-block:not(.text-block--full-width).h5,
-  .text-block:not(.text-block--full-width).h6 {
-    text-wrap: balance;
-  }
+  assign font_size_class = ''
+  if block.settings.font_size != ""
+    # استخدام قيمة عشوائية لحجم الخط إذا كان هناك
+    assign font_size_class = 'text-[' | append: block.settings.font_size | append: ']'
+  endif
 
-  /* Hide underline unless text is using paragraph styles. */
-  .text-block:is(.h1, .h2, .h3, .h4, .h5, .h6) a {
-    text-decoration-color: transparent;
-  }
+  assign font_weight_class = ''
+  if block.settings.weight != ""
+    # استخدام قيمة عشوائية لوزن الخط
+    assign font_weight_class = 'font-[' | append: block.settings.weight | append: ']'
+  endif
 
-  .text-block h1,
-  .text-block.h1 > * {
-    margin-block: var(--font-h1--spacing);
-  }
+  assign letter_spacing_class = ''
+  if block.settings.letter_spacing == 'tight'
+    assign letter_spacing_class = 'tracking-tight'
+  elsif block.settings.letter_spacing == 'normal'
+    assign letter_spacing_class = 'tracking-normal'
+  elsif block.settings.letter_spacing == 'loose'
+    assign letter_spacing_class = 'tracking-wide' # Tailwind يستخدم wide لـ loose
+  endif
 
-  .text-block h2,
-  .text-block.h2 > * {
-    margin-block: var(--font-h2--spacing);
-  }
-
-  .text-block h3,
-  .text-block.h3 > * {
-    margin-block: var(--font-h3--spacing);
-  }
-
-  .text-block h4,
-  .text-block.h4 > * {
-    margin-block: var(--font-h4--spacing);
-  }
-
-  .text-block h5,
-  .text-block.h5 > * {
-    margin-block: var(--font-h5--spacing);
-  }
-
-  .text-block h6,
-  .text-block.h6 > * {
-    margin-block: var(--font-h6--spacing);
-  }
-
-  .text-block > *:first-child {
-    margin-block-start: 0;
-  }
-
-  .text-block > *:last-child {
-    margin-block-end: 0;
-  }
-
-  .text-block--align-center,
-  .text-block--align-center > * {
-    margin-inline: auto;
-  }
-
-  .text-block--align-right,
-  .text-block--align-right > * {
-    margin-inline-start: auto;
-  }
-{% endstylesheet %}
-
-{% assign plain_text = block.settings.text | strip_newlines | strip_html | strip %}
-{%- assign block_index = section.blocks | find_index: 'id', block.id -%}
+  assign text_case_class = ''
+  if block.settings.case == 'uppercase'
+    assign text_case_class = 'uppercase'
+  endif
+%}
 
 {%- unless plain_text == '' -%}
   <slideshow-slide
     ref="slides[]"
     class="
       announcement-bar__slide
-      text-block
-      text-block--{{ block.id }}
-      text-block--align-center
-      text-block--full-width
-      custom-typography
-      {% if block.settings.font_size != "" %}custom-font-size{% endif %}
-      {% if block.settings.weight != "" %}custom-font-weight{% endif %}
+      w-[var(--width)]
+      max-w-full
+      text-[var(--text-align)]
+      {% if block.settings.font_size != "" %}text-[var(--font-size)] {% endif %}
+      {% if block.settings.weight != "" %}font-[var(--font-weight)] {% endif %}
+      {% if block.settings.font != "" %}font-[var(--font)] {% endif %}
+      leading-[var(--line-height)]
+      {% if block_index == 0 %}aria-hidden-false{% else %}aria-hidden-true{% endif %}
+      {{ alignment_class }}
+      {{ font_class }}
+      {{ font_size_class }}
+      {{ font_weight_class }}
+      {{ letter_spacing_class }}
+      {{ text_case_class }}
+      text-wrap-balance
     "
     style="
       {% render 'typography-style', settings: block.settings, preset: 'custom' %}
       --width: 100%;
+      --max-width: 100%; /* افتراضي */
       --text-align: center;
       --line-height: 1;
     "
     {{ block.shopify_attributes }}
     aria-hidden="{% if block_index == 0 %}false{% else %}true{% endif %}"
   >
-    <p class="announcement-bar__text">
+    <div class="announcement-bar__text">
       {{ block.settings.text }}
-    </p>
+    </div>
 
     {% if block.settings.link != blank %}
       <a
-        class="announcement-bar__link"
+        class="announcement-bar__link decoration-transparent" {# أضفنا decoration-transparent هنا #}
         href="{{ block.settings.link }}"
       >
-        <span class="visually-hidden">
+        <span class="sr-only"> {# visually-hidden -> sr-only #}
           {{ block.settings.text | strip_html }}
         </span>
       </a>
