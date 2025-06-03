@@ -7,8 +7,11 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
+    --color-gray-200: oklch(92.8% 0.006 264.531);
     --color-black: #000;
     --color-white: #fff;
+    --spacing: 0.25rem;
+    --breakpoint-xl: 80rem;
     --font-weight-bold: 700;
     --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
     --default-transition-duration: 150ms;
@@ -184,6 +187,12 @@
   .sticky {
     position: sticky;
   }
+  .top-0 {
+    top: calc(var(--spacing) * 0);
+  }
+  .z-50 {
+    z-index: 50;
+  }
   .row-1 {
     grid-row: 1;
   }
@@ -238,8 +247,14 @@
   .w-\[calc\(100\%-theme\(spacing\.10\)\*2\)\] {
     width: calc(100% - 2.5rem * 2);
   }
+  .w-full {
+    width: 100%;
+  }
   .max-w-\[680px\] {
     max-width: 680px;
+  }
+  .max-w-screen-xl {
+    max-width: var(--breakpoint-xl);
   }
   .flex-shrink {
     flex-shrink: 1;
@@ -249,6 +264,9 @@
   }
   .grow {
     flex-grow: 1;
+  }
+  .border-collapse {
+    border-collapse: collapse;
   }
   .transform {
     transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
@@ -265,6 +283,9 @@
   .items-center {
     align-items: center;
   }
+  .justify-between {
+    justify-content: space-between;
+  }
   .truncate {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -277,9 +298,35 @@
     border-style: var(--tw-border-style);
     border-width: 1px;
   }
+  .border-t {
+    border-top-style: var(--tw-border-style);
+    border-top-width: 1px;
+  }
   .border-b {
     border-bottom-style: var(--tw-border-style);
     border-bottom-width: 1px;
+  }
+  .border-solid {
+    --tw-border-style: solid;
+    border-style: solid;
+  }
+  .border-gray-200 {
+    border-color: var(--color-gray-200);
+  }
+  .px-4 {
+    padding-inline: calc(var(--spacing) * 4);
+  }
+  .py-2 {
+    padding-block: calc(var(--spacing) * 2);
+  }
+  .py-4 {
+    padding-block: calc(var(--spacing) * 4);
+  }
+  .pt-0 {
+    padding-top: calc(var(--spacing) * 0);
+  }
+  .pb-0 {
+    padding-bottom: calc(var(--spacing) * 0);
   }
   .text-left {
     text-align: left;
@@ -338,6 +385,16 @@
   }
   .\[grid-area\:stack\]\/\[grid-area\:stack\] {
     grid-area: color-mix(in oklab, stack grid-area:stack, transparent);
+  }
+  .md\:block {
+    @media (width >= 48rem) {
+      display: block;
+    }
+  }
+  .md\:hidden {
+    @media (width >= 48rem) {
+      display: none;
+    }
   }
 }
 @property --tw-rotate-x {
