@@ -1,3 +1,5 @@
+
+
 {% liquid
   assign order = 'logo,menu,localization,search,mobile_search,actions'
 
@@ -181,10 +183,33 @@
   {% for row in rows %}
     {% liquid
       assign scheme = 'color_scheme_' | append: row
-      assign row_color = section.settings[scheme]
-      assign width_class = 'max-w-' | append: section.settings.section_width
-      assign border_width = section.settings[border_bottom_setting_id]
-      assign border_mobile_width = section.settings.border_width
+      assign class = 'header__row header__row--[row] color-[row_scheme] section section--full-width-margin section--[section-width]' | replace: '[row]', row | replace: '[row_scheme]', section.settings[scheme] | replace: '[section-width]', section.settings.section_width
+
+      case row
+        when 'top'
+          assign first = mobile_menu
+
+          if bottom_row_blocks.size > 0 and section.settings.divider_size == 'page-width'
+            assign class = class | append: ' divider--page-width'
+          endif
+
+          if bottom_row_blocks.size > 0
+            assign border_bottom_setting_id = 'divider_width'
+          else
+            assign border_bottom_setting_id = 'border_width'
+          endif
+        when 'bottom'
+          assign first = ''
+          assign class = class | append: ' mobile:hidden'
+
+          assign border_bottom_setting_id = 'border_width'
+      endcase
+
+      assign style = '--border-bottom-width: [width]px; ' | replace: '[width]', section.settings[border_bottom_setting_id]
+
+      if row == 'top'
+        assign style = style | append: '--border-bottom-width-mobile: [width]px; ' | replace: '[width]', section.settings.border_width
+      endif
     %}
 
     {% capture content %}
@@ -192,7 +217,7 @@
         row: row,
         order: order,
         settings: section.settings,
-        first: mobile_menu,
+        first: first,
         logo: logo,
         menu: menu,
         actions: actions,
@@ -205,20 +230,13 @@
     {% assign content = content | strip %}
     {% if content != blank %}
       <div
-        class="
-          w-full
-          {% if row == 'bottom' %} hidden md:block {% endif %}
-          bg-{{ row_color }}
-          border-b
-          {% if row == 'top' %}
-            border-b-[{{ border_width }}px]
-            md:border-b-[{{ border_mobile_width }}px]
-          {% else %}
-            border-b-[{{ border_width }}px]
-          {% endif %}
-        "
+        class="{{ class | strip }}"
+        ref="headerRowTop"
+        {%- if style != blank -%}
+          style="{{ style | strip }}"
+        {%- endif -%}
       >
-        <div class="mx-auto px-4 {{ width_class }} flex items-center justify-between py-2">
+        <div class="header__columns spacing-style">
           {{ content }}
         </div>
       </div>
@@ -226,14 +244,11 @@
   {% endfor %}
 
   {% if navigation_bar != blank %}
-    <div class="md:hidden w-full bg-{{ section.settings.color_scheme_bottom }} border-t border-gray-200">
-      <div class="px-4 py-2">
-        {{ navigation_bar }}
-      </div>
+    <div class="header__row header__row--mobile desktop:hidden color-{{ section.settings.color_scheme_bottom }}">
+      {{ navigation_bar }}
     </div>
   {% endif %}
 </header-component>
-
 
 <script
   src="{{ 'header.js' | asset_url }}"
