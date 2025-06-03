@@ -21,6 +21,7 @@
       blocking="render"
       id="view-transition-render-blocker"
     >
+    <link as="style" href="{{ 'app.css' | asset_url }}" onload="this.rel='stylesheet'">
 
     {%- render 'meta-tags' -%}
     {%- render 'fonts' -%}
