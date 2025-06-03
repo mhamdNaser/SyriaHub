@@ -246,6 +246,9 @@
   .ms-auto {
     margin-inline-start: auto;
   }
+  .mt-24 {
+    margin-top: calc(var(--spacing) * 24);
+  }
   .mt-\[var\(--margin-6xl\)\] {
     margin-top: var(--margin-6xl);
   }
@@ -344,6 +347,9 @@
   }
   .\[gap\:0_var\(--padding-5xl\)\] {
     gap: 0 var(--padding-5xl);
+  }
+  .gap-x-20 {
+    column-gap: calc(var(--spacing) * 20);
   }
   .gap-x-\[var\(--padding-5xl\)\] {
     column-gap: var(--padding-5xl);
@@ -515,6 +521,11 @@
   .md\:col-end-2 {
     @media (width >= 48rem) {
       grid-column-end: 2;
+    }
+  }
+  .md\:row-span-full {
+    @media (width >= 48rem) {
+      grid-row: 1 / -1;
     }
   }
   .md\:row-start-1 {
