@@ -85,9 +85,24 @@
         "enable_transparent_header_collection": true,
         "collection_color_scheme": "inverse"
       }
+    },
+    "divider_9ggLEN": {
+      "type": "divider",
+      "name": "t:names.divider_section",
+      "settings": {
+        "color_scheme": "",
+        "section_width": "full-width",
+        "thickness": 1,
+        "corner_radius": "square",
+        "width_percent": 100,
+        "alignment_horizontal": "center",
+        "padding-block-start": 16,
+        "padding-block-end": 16
+      }
     }
   },
   "order": [
+    "divider_9ggLEN",
     "header_section"
   ]
 }
