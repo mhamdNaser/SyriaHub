@@ -6,38 +6,33 @@
   <div class="section color-{{ section.settings.color_scheme }} section--{{ section.settings.section_width }}">
     <div
       class="
-        grid grid-cols-1 gap-y-10
-        xl:grid-cols-12 md:gap-x-6
         {% if cart.empty? %}
           flex flex-col items-center justify-center text-center
+        {% else %}
+          grid grid-cols-1 gap-y-10 md:grid-cols-12 md:gap-x-6
         {% endif %}
         {% render 'spacing-style', settings: section.settings %}
       "
     >
-      <!-- عنوان الصفحة -->
-      <div class="cart-page__title xl:col-span-2">
+      <!-- العنوان -->
+      <div class="cart-page__title md:col-span-2">
         {%- content_for 'block', id: 'cart-page-title', type: '_cart-title' %}
       </div>
 
-      <!-- العناصر الرئيسية -->
-      <div class="cart-page__items w-full xl:col-span-8">
+      <!-- العناصر -->
+      <div class="cart-page__items w-full md:col-span-8">
         {%- content_for 'block', id: 'cart-page-items', type: '_cart-products' %}
       </div>
 
       <!-- الملخص -->
       {%- unless cart.empty? -%}
-        <div
-          class="
-            cart-page__summary
-            md:col-span-2 md:self-stretch md:relative
-          "
-        >
+        <div class="cart-page__summary md:col-span-2 relative self-stretch">
           {%- content_for 'block', id: 'cart-page-summary', type: '_cart-summary' -%}
         </div>
       {%- endunless -%}
 
-      <!-- محتوى إضافي -->
-      <div class="cart-page__more-blocks w-full md:col-span-12 mt-24">
+      <!-- المزيد من المحتوى -->
+      <div class="cart-page__more-blocks w-full mt-24 md:col-span-12">
         {%- content_for 'blocks' -%}
       </div>
     </div>
