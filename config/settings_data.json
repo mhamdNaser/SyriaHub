@@ -24,6 +24,7 @@
     "type_case_h4": "uppercase",
     "type_case_h5": "uppercase",
     "type_case_h6": "uppercase",
+    "page_width": "wide",
     "card_hover_effect": "subtle-zoom",
     "button_border_radius_primary": 0,
     "type_font_button_primary": "accent",
