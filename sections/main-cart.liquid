@@ -1,3 +1,43 @@
+<cart-items-component
+  class="w-full"
+  data-section-id="{{ section.id }}"
+>
+  <div class="section-background color-{{ section.settings.color_scheme }}"></div>
+  <div class="section color-{{ section.settings.color_scheme }} section--{{ section.settings.section_width }}">
+    <div
+      class="
+        {% if cart.empty? %}
+          flex flex-col items-center justify-center text-center
+        {% else %}
+          grid grid-flow-row-dense grid-cols-3 grid-rows-3 gap-y-10
+        {% endif %}
+        {% render 'spacing-style', settings: section.settings %}
+      "
+    >
+      <!-- العنوان -->
+      <div class="cart-page__title col-span-2 ">
+        {%- content_for 'block', id: 'cart-page-title', type: '_cart-title' %}
+      </div>
+
+      <!-- العناصر -->
+      <div class="cart-page__items w-full  col-span-8">
+        {%- content_for 'block', id: 'cart-page-items', type: '_cart-products' %}
+      </div>
+
+      <!-- الملخص -->
+      {%- unless cart.empty? -%}
+        <div class="cart-page__summary col-span-2 relative self-stretch">
+          {%- content_for 'block', id: 'cart-page-summary', type: '_cart-summary' -%}
+        </div>
+      {%- endunless -%}
+
+      <!-- المزيد من المحتوى -->
+      <div class="cart-page__more-blocks w-full mt-24 md:col-span-12">
+        {%- content_for 'blocks' -%}
+      </div>
+    </div>
+  </div>
+</cart-items-component>
 
 
 
