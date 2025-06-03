@@ -637,6 +637,21 @@
       padding-top: calc(var(--spacing) * 0);
     }
   }
+  .xl\:col-span-2 {
+    @media (width >= 80rem) {
+      grid-column: span 2 / span 2;
+    }
+  }
+  .xl\:col-span-8 {
+    @media (width >= 80rem) {
+      grid-column: span 8 / span 8;
+    }
+  }
+  .xl\:grid-cols-12 {
+    @media (width >= 80rem) {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+  }
   .xl\:grid-cols-\[1fr_var\(--sidebar-width\)\] {
     @media (width >= 80rem) {
       grid-template-columns: 1fr var(--sidebar-width);

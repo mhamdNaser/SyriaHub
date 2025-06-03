@@ -7,7 +7,7 @@
     <div
       class="
         grid grid-cols-1 gap-y-10
-        md:grid-cols-12 md:gap-x-6
+        xl:grid-cols-12 md:gap-x-6
         {% if cart.empty? %}
           flex flex-col items-center justify-center text-center
         {% endif %}
@@ -15,12 +15,12 @@
       "
     >
       <!-- عنوان الصفحة -->
-      <div class="cart-page__title md:col-span-2">
+      <div class="cart-page__title xl:col-span-2">
         {%- content_for 'block', id: 'cart-page-title', type: '_cart-title' %}
       </div>
 
       <!-- العناصر الرئيسية -->
-      <div class="cart-page__items w-full md:col-span-8">
+      <div class="cart-page__items w-full xl:col-span-8">
         {%- content_for 'block', id: 'cart-page-items', type: '_cart-products' %}
       </div>
 
