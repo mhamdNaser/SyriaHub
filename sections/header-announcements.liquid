@@ -8,7 +8,7 @@
 
 <aside
   class="announcement-bar border-b section section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }} {% render 'spacing-padding', settings: section.settings %}"
-  style="--border-bottom-width: {{ section.settings.divider_width }}px; padding-block-start: {{ section.settings.padding_block_start }}px; padding-block-end: {{ section.settings.padding_block_end }}px;"
+  style="--border-bottom-width: {{ section.settings.divider_width }}px; padding: {{ section.settings.padding_block_start }}px {{ section.settings.padding_block_end }}px;"
 >
   {% liquid
     assign autoplay = false
