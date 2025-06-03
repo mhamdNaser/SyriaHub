@@ -18,7 +18,7 @@
   >
     <div
       class="
-        {% comment %} grid grid-cols-1 {% endcomment %}
+        grid grid-cols-1
         gap-x-[var(--padding-5xl)]
         {% if cart.empty? %}
           flex flex-col items-center justify-center
@@ -34,11 +34,14 @@
         {% if cart.empty? %}
           mt-[var(--margin-6xl)] text-center
         {% endif %}
+        md:col-start-1 md:col-end-2
       ">
         {%- content_for 'block', id: 'cart-page-title', type: '_cart-title' %}
       </div>
 
-      <div class="cart-page__items">
+      <div class="cart-page__items
+        md:col-start-1 md:col-end-2
+      ">
         {%- content_for 'block', id: 'cart-page-items', type: '_cart-products' %}
       </div>
 
@@ -56,6 +59,7 @@
         {% if cart.empty? %}
           mt-[var(--margin-6xl)]
         {% endif %}
+        md:col-start-1 md:col-end-2
       ">
         {%- content_for 'blocks' -%}
       </div>

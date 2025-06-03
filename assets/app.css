@@ -484,9 +484,19 @@
       position: relative;
     }
   }
+  .md\:col-start-1 {
+    @media (width >= 48rem) {
+      grid-column-start: 1;
+    }
+  }
   .md\:col-start-2 {
     @media (width >= 48rem) {
       grid-column-start: 2;
+    }
+  }
+  .md\:col-end-2 {
+    @media (width >= 48rem) {
+      grid-column-end: 2;
     }
   }
   .md\:row-start-1 {
